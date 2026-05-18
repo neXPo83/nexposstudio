@@ -38,46 +38,6 @@
             font-size: 1.2rem;
             color: #cccccc;
             margin-top: 10px;
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>neXPo's Studio</title>
-    <style>
-        :root {
-            --bg-color: #121212;
-            --text-color: #ffffff;
-            --accent-color: #00ffcc;
-            --card-bg: #1e1e1e;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        header {
-            text-align: center;
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            color: var(--accent-color);
-            letter-spacing: 2px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: #cccccc;
-            margin-top: 10px;
         }
 
         .container {
@@ -109,7 +69,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            align-items: center; /* Centra il contenuto orizzontalmente */
+            align-items: center; 
         }
 
         .card:hover {
@@ -118,15 +78,15 @@
             border-color: var(--accent-color);
         }
 
-        /* Stile per le icone delle app */
+        /* --- DIMENSIONI ICONE APP --- */
         .app-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 20%; /* Effetto icona smussata tipico delle app */
+            width: 100px;  /* Cambia questo valore per la larghezza */
+            height: 100px; /* Cambia questo valore per l'altezza */
+            border-radius: 20%; 
             object-fit: cover;
             margin-bottom: 1.5rem;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            background-color: #2a2a2a; /* Colore di sfondo se l'immagine tarda a caricarsi */
+            background-color: #2a2a2a; 
         }
 
         .card h3 {
@@ -202,7 +162,7 @@
             </div>
 
             <div class="card">
-                <img src="icona-spesa.png" alt="Icona AI Controllo Spesa" class="app-icon">
+                <img src="icona-spesa.png" alt="Icona IA Controllo Spesa" class="app-icon">
                 <h3>IA Controllo Spesa</h3>
                 <p>Inserisci qui la descrizione dell'utility, spiegando come l'intelligenza artificiale aiuta a gestire le spese.</p>
                 <a href="#" class="btn">Scopri di più</a>
