@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>neXPo's Studio</title>
     <meta name="description" content="Scopri i progetti e le applicazioni sviluppate da neXPo's Studio: Snake Adventure: Echoes, HD DashHome e IA Controllo Spesa.">
+    <meta name="google" content="notranslate">
+    
     <style>
         :root {
             --bg-color: #121212;
@@ -135,20 +137,39 @@
             border-top: 1px solid #222;
         }
 
-        /* ========================================= */
-/* FIX GOOGLE TRANSLATE (Modalità Killer)    */
+/* ========================================= */
+/* FIX GOOGLE TRANSLATE (Modalità Killer 2.0)*/
 /* ========================================= */
 
-/* 1. Uccide la barra bianca in alto e impedisce che la pagina slitti in giù */
-.goog-te-banner-frame.skiptranslate { display: none !important; } 
-body { top: 0px !important; position: static !important; }
+/* 1. Disintegra il banner e l'iframe in qualsiasi forma si presentino */
+iframe.goog-te-banner-frame,
+iframe[id="goog-te-banner-frame"],
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame { 
+    display: none !important; 
+    visibility: hidden !important; 
+    height: 0 !important;
+} 
 
-/* 2. Uccide il popup orrendo della "valutazione traduzione" quando ci clicchi */
-#goog-gt-tt, .goog-te-balloon-frame { display: none !important; visibility: hidden !important; }
+/* Forza il body a non farsi spingere verso il basso */
+body { 
+    top: 0px !important; 
+    position: static !important; 
+    min-height: 100vh !important;
+}
 
-/* 3. Uccide l'evidenziatore giallo/blu quando passi il mouse sul testo tradotto */
-.goog-text-highlight { background-color: transparent !important; box-shadow: none !important; pointer-events: none !important; }
+/* 2. Uccide il popup orrendo della "valutazione traduzione" */
+#goog-gt-tt, .goog-te-balloon-frame { 
+    display: none !important; 
+    visibility: hidden !important; 
+}
 
+/* 3. Uccide l'evidenziatore giallo/blu al passaggio del mouse */
+.goog-text-highlight { 
+    background-color: transparent !important; 
+    box-shadow: none !important; 
+    pointer-events: none !important; 
+}
 /* ========================================= */
 /* STILE DEL NOSTRO MENU NEON                */
 /* ========================================= */
