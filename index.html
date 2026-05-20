@@ -140,20 +140,73 @@
 
     <header>
 
-<!-- Inizio Widget Google Translate -->
-<div id="google_translate_element" style="margin-top: 10px;"></div>
+<!-- Inizio Widget Google Translate Custom -->
+<div id="google_translate_element" class="custom-translate"></div>
+
+<style>
+    /* 1. NASCONDE LA FASTIDIOSA BARRA SUPERIORE DI GOOGLE */
+    .goog-te-banner-frame.skiptranslate { 
+        display: none !important; 
+    } 
+    body { 
+        top: 0px !important; 
+    }
+
+    /* 2. FIX PER LO SCROLL E IL TAGLIO DEL MENU A TENDINA */
+    .goog-te-menu-frame {
+        z-index: 9999999 !important; /* Lo porta sopra a qualsiasi altra cosa */
+        box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3) !important;
+    }
+
+    /* 3. NASCONDE IL TESTO "POWERED BY GOOGLE" E IL LOGO */
+    .goog-te-gadget {
+        color: transparent !important;
+        font-size: 0;
+    }
+    
+    .goog-te-gadget .goog-logo-link {
+        display: none !important;
+    }
+
+    /* 4. GRAFICA DEL MENU A TENDINA (Stile Neon Blue) */
+    .goog-te-gadget .goog-te-combo {
+        color: #00f3ff !important; /* Colore Neon Blue */
+        background-color: #0a0a10 !important; /* Sfondo scuro del tuo tema */
+        border: 1px solid #00f3ff !important;
+        border-radius: 6px !important;
+        padding: 5px 10px !important;
+        font-family: 'Rajdhani', sans-serif !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        cursor: pointer !important;
+        outline: none !important;
+        margin: 0 !important;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .goog-te-gadget .goog-te-combo:hover {
+        box-shadow: 0 0 10px rgba(0, 243, 255, 0.3) !important;
+    }
+
+    /* Posizionamento nella tua Navbar */
+    .custom-translate {
+        margin-top: 10px;
+    }
+</style>
 
 <script type="text/javascript">
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
-            pageLanguage: 'it', // Indica che la lingua originale della pagina è l'italiano
+            pageLanguage: 'it',
+            includedLanguages: 'en,es,fr,de,it', // (Opzionale) Limita le lingue per un menu più pulito
             layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
             autoDisplay: false
         }, 'google_translate_element');
     }
 </script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<!-- Fine Widget Google Translate -->
+<!-- Fine Widget Google Translate Custom -->
+
         
         
         <h1>neXPo's Studio</h1>
