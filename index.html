@@ -304,6 +304,34 @@ Progettata per chi passa molto tempo alla guida, HD DashHome racchiude in un'uni
     }
 </script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+    // Aspetta che la pagina sia caricata
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        // Crea l'osservatore che vigila sulla pagina
+        const observer = new MutationObserver(function(mutations) {
+            
+            // 1. Cerca il banner e lo nasconde forzatamente
+            const banner = document.querySelector('.goog-te-banner-frame');
+            if (banner) {
+                banner.style.setProperty('display', 'none', 'important');
+            }
+            
+            // 2. Impedisce a Google di spingere il body in basso (il famoso sfasamento)
+            if (document.body.style.top !== '0px' && document.body.style.top !== '') {
+                document.body.style.setProperty('top', '0px', 'important');
+            }
+        });
+
+        // Avvia l'osservatore per controllare ogni modifica agli attributi del body
+        observer.observe(document.body, { 
+            attributes: true, 
+            childList: true, 
+            subtree: true,
+            attributeFilter: ['style', 'class'] 
+        });
+    });
+    </script>
     
 </body>
 </html>
