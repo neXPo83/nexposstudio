@@ -134,78 +134,82 @@
             color: #777;
             border-top: 1px solid #222;
         }
+
+        /* ========================================= */
+/* FIX GOOGLE TRANSLATE (Modalità Killer)    */
+/* ========================================= */
+
+/* 1. Uccide la barra bianca in alto e impedisce che la pagina slitti in giù */
+.goog-te-banner-frame.skiptranslate { display: none !important; } 
+body { top: 0px !important; position: static !important; }
+
+/* 2. Uccide il popup orrendo della "valutazione traduzione" quando ci clicchi */
+#goog-gt-tt, .goog-te-balloon-frame { display: none !important; visibility: hidden !important; }
+
+/* 3. Uccide l'evidenziatore giallo/blu quando passi il mouse sul testo tradotto */
+.goog-text-highlight { background-color: transparent !important; box-shadow: none !important; pointer-events: none !important; }
+
+/* ========================================= */
+/* STILE DEL NOSTRO MENU NEON                */
+/* ========================================= */
+.custom-language-selector {
+    margin-top: 5px;
+}
+
+.custom-language-selector select {
+    background-color: #0a0a10;
+    color: var(--snake-blue);
+    border: 1px solid var(--snake-blue);
+    padding: 8px 35px 8px 12px;
+    border-radius: 8px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+    /* Rimuove la freccia standard brutta e ne mette una custom */
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%2300f3ff' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 50%;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-language-selector select:hover {
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+    background-color: #111827;
+}
+
+.custom-language-selector select option {
+    background-color: #0a0a10;
+    color: #ffffff;
+    font-family: 'Rajdhani', sans-serif;
+}
+        
     </style>
 </head>
 <body>
 
     <header>
 
-<!-- Inizio Widget Google Translate Custom -->
-<div id="google_translate_element" class="custom-translate"></div>
+<!-- IL NOSTRO MENU PERSONALIZZATO NEON -->
+<div class="custom-language-selector">
+    <select id="my-custom-lang" onchange="cambiaLingua(this.value)">
+        <option value="">🌍 Lingua</option>
+        <option value="it">🇮🇹 Italiano</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="de">🇩🇪 Deutsch</option>
+    </select>
+</div>
 
-<style>
-    /* 1. NASCONDE LA FASTIDIOSA BARRA SUPERIORE DI GOOGLE */
-    .goog-te-banner-frame.skiptranslate { 
-        display: none !important; 
-    } 
-    body { 
-        top: 0px !important; 
-    }
+<!-- IL WIDGET DI GOOGLE (COMPLETAMENTE INVISIBILE) -->
+<div id="google_translate_element" style="display:none;"></div>
 
-    /* 2. FIX PER LO SCROLL E IL TAGLIO DEL MENU A TENDINA */
-    .goog-te-menu-frame {
-        z-index: 9999999 !important; /* Lo porta sopra a qualsiasi altra cosa */
-        box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3) !important;
-    }
-
-    /* 3. NASCONDE IL TESTO "POWERED BY GOOGLE" E IL LOGO */
-    .goog-te-gadget {
-        color: transparent !important;
-        font-size: 0;
-    }
-    
-    .goog-te-gadget .goog-logo-link {
-        display: none !important;
-    }
-
-    /* 4. GRAFICA DEL MENU A TENDINA (Stile Neon Blue) */
-    .goog-te-gadget .goog-te-combo {
-        color: #00f3ff !important; /* Colore Neon Blue */
-        background-color: #0a0a10 !important; /* Sfondo scuro del tuo tema */
-        border: 1px solid #00f3ff !important;
-        border-radius: 6px !important;
-        padding: 5px 10px !important;
-        font-family: 'Rajdhani', sans-serif !important;
-        font-size: 14px !important;
-        font-weight: 700 !important;
-        cursor: pointer !important;
-        outline: none !important;
-        margin: 0 !important;
-        transition: box-shadow 0.3s ease;
-    }
-
-    .goog-te-gadget .goog-te-combo:hover {
-        box-shadow: 0 0 10px rgba(0, 243, 255, 0.3) !important;
-    }
-
-    /* Posizionamento nella tua Navbar */
-    .custom-translate {
-        margin-top: 10px;
-    }
-</style>
-
-<script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'it',
-            includedLanguages: 'en,es,fr,de,it', // (Opzionale) Limita le lingue per un menu più pulito
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false
-        }, 'google_translate_element');
-    }
-</script>
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<!-- Fine Widget Google Translate Custom -->
 
         
         
@@ -257,6 +261,28 @@ Progettata per chi passa molto tempo alla guida, HD DashHome racchiude in un'uni
     <footer>
         <p>&copy; 2026 neXPo's Studio. Tutti i diritti riservati.</p>
     </footer>
+<script type="text/javascript">
+    // Inizializza Google Translate
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'it',
+            includedLanguages: 'en,es,fr,de,it', // Le stesse che abbiamo messo nel nostro HTML
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
 
+    // Funzione che passa il comando dal nostro menu a quello nascosto di Google
+    function cambiaLingua(lang) {
+        if (lang === "") return;
+        var selectGoogle = document.querySelector('.goog-te-combo');
+        if (selectGoogle) {
+            selectGoogle.value = lang;
+            // Questo comando "finge" che l'utente abbia cliccato sul selettore originale
+            selectGoogle.dispatchEvent(new Event('change'));
+        }
+    }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
 </body>
 </html>
