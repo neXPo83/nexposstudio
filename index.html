@@ -263,7 +263,7 @@
                 Ti sei svegliato nel vuoto. I frammenti della tua memoria sono sparsi ovunque, e l'Oblio sta cercando di inghiottire tutto. Riuscirai a ricordare chi sei?
                 <br>
                 ​Snake Adventure: Echoes non è il solito gioco del serpente. <br>
-                È un'avventura arcade frenetica e oscura, dove riflessi pronti e strategia sono l'unica via per la salvezza. Supera livelli generati proceduralmente, affronta sfide impossibili e combatti contro entità corrotte.
+                È un'avventura arcade frenetica e oscura, dove riflessi pronti e strategy sono l'unica via per la salvezza. Supera livelli generati proceduralmente, affronta sfide impossibili e combatti contro entità corrotte.
                 </p>
                 <a href="https://nexpo83.github.io/Snake-Adventure-Echoes/#" class="btn">Scopri di più</a>
             </div>
@@ -322,6 +322,47 @@
                 selectGoogle.dispatchEvent(event);
             }
         }
+
+        // 3. NUOVA FUNZIONE: Auto-rileva la lingua del browser
+        function autoImpostaLingua() {
+            // Evitiamo di forzare la lingua se l'utente ci è già stato in questa sessione (memoria attiva)
+            if (sessionStorage.getItem('lingua_verificata')) return;
+
+            // Legge la lingua del browser (es. "en-US" diventa "en", "es-ES" diventa "es")
+            var linguaBrowser = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase();
+            var lingueSupportate = ['en', 'es', 'fr', 'de']; // it è già di default nel codice html
+
+            // Se la lingua intercettata è tra quelle previste nel nostro menu...
+            if (lingueSupportate.includes(linguaBrowser)) {
+                var tentativi = 0;
+                
+                // Il widget di Google non è immediato, impiega millisecondi a creare la sua select interna
+                var intervallo = setInterval(function() {
+                    var selectGoogle = document.querySelector('select.goog-te-combo');
+                    if (selectGoogle) {
+                        clearInterval(intervallo);
+                        
+                        // Allineiamo il nostro menu grafico per fargli mostrare la lingua scelta
+                        var nostroMenu = document.getElementById('my-custom-lang');
+                        if (nostroMenu) nostroMenu.value = linguaBrowser;
+                        
+                        // Inneschiamo finalmente la traduzione
+                        cambiaLingua(linguaBrowser);
+                        
+                        // Memorizziamo nel browser che per questa sessione abbiamo già lavorato
+                        sessionStorage.setItem('lingua_verificata', 'true');
+                    }
+                    tentativi++;
+                    if (tentativi > 20) clearInterval(intervallo); // Limite di sicurezza (dopo 10 secondi si arrende)
+                }, 500);
+            } else {
+                // Se è italiano o una lingua che non supportiamo, fermiamo la procedura salvando lo stato
+                sessionStorage.setItem('lingua_verificata', 'true');
+            }
+        }
+
+        // Facciamo partire il controllo automaticamente all'apertura del sito
+        autoImpostaLingua();
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     
